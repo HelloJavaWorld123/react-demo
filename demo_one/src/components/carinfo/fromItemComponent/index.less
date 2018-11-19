@@ -1,0 +1,113 @@
+
+.fromItemComponent{
+    margin-top:20px;
+    .detailPageBtn{
+        // padding:0 16px;
+        background: #ffffff;
+        .title{
+            font-size:16px;
+            color:#1a1a1a;
+            line-height:30px;
+            padding:6px 20px;
+            padding-bottom: 6px;
+            border-bottom:1PX solid #e7e7e7;
+            // margin-bottom:20px;
+        }
+        .detailPageBtnCont{
+            display: flex;
+            justify-content: flex-start;
+            border-left: 1px solid #e7e7e7;
+            height: 144px;
+            // border-radius: 10px 0 ;
+            >div{
+                flex: 1;
+                display: flex;
+                justify-content:center;
+                flex-direction: column;
+                // align-items:flex-start;
+                padding-left: 20px;
+                border-right:1px solid #e7e7e7;
+                border-bottom:1px solid #e7e7e7;
+                position: relative;
+                .addBtn{
+                    position: absolute;
+                    right: 20px;
+                    top:28px;
+                    color:#1890ff;
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    border:2px solid #1890ff;
+                    font-size: 20px;
+                    text-align: center;
+                    line-height: 14px;
+                    font-weight: 600;
+                }
+                >p{
+                    height:16px;
+                    line-height: 16px;
+                    font-size:16px; 
+                    color:rgba(0,0,0,.45);
+                    margin: 0;
+                    &:nth-child(2){
+                        margin:14px 0;
+                    }
+                }
+                &:hover{
+                    box-shadow: #ccc 0px 0px 10px 4px ;//边框阴影
+                }
+            }
+        }
+    }
+    .tabListCont{
+        height:60px;
+        padding:20px 0 0 16px;
+        background: #fff;
+        display: flex;
+        justify-content: flex-start;
+        div{
+            margin-right:6px;
+            padding:5px 10px;
+            height:40px;
+            line-height:30px;
+            border:1px solid #e8e8e8;
+            border-bottom:1px solid #fff;
+            background: #fafafa;
+            >span{
+                display: inline-block;
+                line-height: 30px;
+            }
+            .close{
+                margin-left:4px;
+                font-size: 16px;
+
+            }
+        }
+        .activityTabstyle{
+            height:41px;
+            background: #fff;
+            transform:translateY(0px);
+            z-index: 999; 
+            color:#1890ff;
+        }
+    }
+    .contentBox{
+        background: #fff;
+        padding:0 16px 16px;
+    }
+    .borderStyles{
+        // margin:0 16px;
+        border:1px solid #e8e8e8;
+        border-radius: 4px;
+    }
+    .noDataStyle{
+        height:60px;
+        line-height: 60px;
+        text-align: center;
+    }
+    div{
+
+    }
+    
+    
+}

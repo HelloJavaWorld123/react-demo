@@ -1,0 +1,102 @@
+.fromItemComponent {
+  margin-top: 20px;
+}
+.fromItemComponent .detailPageBtn {
+  background: #ffffff;
+}
+.fromItemComponent .detailPageBtn .title {
+  font-size: 16px;
+  color: #1a1a1a;
+  line-height: 30px;
+  padding: 6px 20px;
+  padding-bottom: 6px;
+  border-bottom: 1PX solid #e7e7e7;
+}
+.fromItemComponent .detailPageBtn .detailPageBtnCont {
+  display: flex;
+  justify-content: flex-start;
+  border-left: 1px solid #e7e7e7;
+  height: 144px;
+}
+.fromItemComponent .detailPageBtn .detailPageBtnCont > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 20px;
+  border-right: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  position: relative;
+}
+.fromItemComponent .detailPageBtn .detailPageBtnCont > div .addBtn {
+  position: absolute;
+  right: 20px;
+  top: 28px;
+  color: #1890ff;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #1890ff;
+  font-size: 20px;
+  text-align: center;
+  line-height: 14px;
+  font-weight: 600;
+}
+.fromItemComponent .detailPageBtn .detailPageBtnCont > div > p {
+  height: 16px;
+  line-height: 16px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.45);
+  margin: 0;
+}
+.fromItemComponent .detailPageBtn .detailPageBtnCont > div > p:nth-child(2) {
+  margin: 14px 0;
+}
+.fromItemComponent .detailPageBtn .detailPageBtnCont > div:hover {
+  box-shadow: #ccc 0px 0px 10px 4px;
+}
+.fromItemComponent .tabListCont {
+  height: 60px;
+  padding: 20px 0 0 16px;
+  background: #fff;
+  display: flex;
+  justify-content: flex-start;
+}
+.fromItemComponent .tabListCont div {
+  margin-right: 6px;
+  padding: 5px 10px;
+  height: 40px;
+  line-height: 30px;
+  border: 1px solid #e8e8e8;
+  border-bottom: 1px solid #fff;
+  background: #fafafa;
+}
+.fromItemComponent .tabListCont div > span {
+  display: inline-block;
+  line-height: 30px;
+}
+.fromItemComponent .tabListCont div .close {
+  margin-left: 4px;
+  font-size: 16px;
+}
+.fromItemComponent .tabListCont .activityTabstyle {
+  height: 41px;
+  background: #fff;
+  transform: translateY(0px);
+  z-index: 999;
+  color: #1890ff;
+}
+.fromItemComponent .contentBox {
+  background: #fff;
+  padding: 0 16px 16px;
+}
+.fromItemComponent .borderStyles {
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+.fromItemComponent .noDataStyle {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+/*# sourceMappingURL=index.css.map */

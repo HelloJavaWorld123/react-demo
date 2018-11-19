@@ -1,17 +1,17 @@
 import React from 'react'
 import { Row, Col,Card, Button,  Divider, Message,  Radio,TextArea, Form, Input, Cascader,DatePicker} from 'antd';
 import {provinces, cities, areas} from '../../constants/Area'
-import UpLoadImg  from '../system/UploadImg'
 import {fetch} from '../../api/tools'
 import moment from 'moment'
-import locale from 'antd/lib/date-picker/locale/zh_CN';
+import { createHashHistory } from 'history';
+
+
+const history = createHashHistory();
 //保单记录添加
 
-moment.locale('zh-cn');
 
 
 const FormItem = Form.Item;
-const dateFormat = 'YYYY-MM-DD HH:mm:ss';
 class CarInsuranceFileRecord extends React.Component {
   state = {
       formLayout: 'horizontal',
@@ -48,7 +48,7 @@ class CarInsuranceFileRecord extends React.Component {
         fetch('post','/chedui/zichan/carInsuranceFileRecord',filesValues).then(res=>{
           if (res.code ===2000) {
               Message.success('添加成功');
-              this.props.history.push('/app/car/CarInsuranceFileRecordList');
+              history.push('/app/car/CarInsuranceFileRecordList');
           }
         })
       }
@@ -81,6 +81,12 @@ class CarInsuranceFileRecord extends React.Component {
   };
 
   componentDidMount(){
+      const{ carNumber,carType} = this.props.match.params;
+      this.props.form.setFieldsValue({
+          carNumber:carNumber,
+          carType:carType
+      })
+
     areas.forEach(area => {
       const matchCity = cities.filter(city => city.code === area.cityCode)[0];
       if (matchCity) {
@@ -148,7 +154,7 @@ class CarInsuranceFileRecord extends React.Component {
     const { TextArea } = Input;
 
     return (
-        <div>
+        <div style={{background: 'white', padding: '26px 16px 16px',margin:'20px 0px'}}>
           <Row><p style={{fontSize: '13px',fontWeight: '800'}}>保单记录</p></Row>
           <Divider style={{margin: '10px 0'}}></Divider>
           <Form onSubmit={this.handleSubmit} layout={formLayout}>
@@ -239,7 +245,7 @@ class CarInsuranceFileRecord extends React.Component {
                                   required:true,message:"请选择商业险结束时间"
                               }],
                           })(
-                              <DatePicker locale={locale} placeholder={'请选择商业险结束时间'}/>
+                              <DatePicker  placeholder={'请选择商业险结束时间'}/>
                           )}
                       </FormItem>
                   </Col>
@@ -255,7 +261,7 @@ class CarInsuranceFileRecord extends React.Component {
                                   required:true,message:"请选择交强险开始时间"
                               }],
                           })(
-                              <DatePicker locale={locale} placeholder={'请选择交强险开始时间'}/>
+                              <DatePicker  placeholder={'请选择交强险开始时间'}/>
                           )}
                       </FormItem>
                   </Col>

@@ -1,0 +1,3 @@
+.contractDetail .ant-input-suffix {
+  padding-right: 16px;
+}

@@ -65,7 +65,7 @@ class AnnualInspectionRecordList extends React.Component {
     activeIndex: 0,
     isShowCarDetail:false,
     pageNum :1,
-    pageSize :6,
+    pageSize :10,
   };
 
 
@@ -144,12 +144,13 @@ class AnnualInspectionRecordList extends React.Component {
           key: '6',
       },];
     const{ data,total,pageNum,pageSize} = this.state;
+    const{carNumber,carType} = this.props;
     return (
 
         <div style={{background: 'white', padding: '26px 16px 16px'}}>
         <Row><p style={{fontSize: '13px',fontWeight: '800'}}>违章记录</p></Row>
         <Divider style={{margin: '10px 0'}}></Divider>
-        <Button type="primary" ghost onClick={()=>{history.push('/app/car/CarIllegalRecord');}}>添加违章记录</Button>
+        <Button type="primary" ghost onClick={()=>{history.push('/app/car/CarIllegalRecord/'+carNumber+'/'+carType);}}>添加违章记录</Button>
         <Button type="primary" ghost onClick={()=>{this.refresh()}}>手动刷新</Button>
         <Table bordered className='mt15'  columns={columns} dataSource={data} pagination={false} />
         <Pagination showQuickJumper defaultCurrent={pageNum} defaultPageSize={pageSize} total={total} onChange={this.onChange} />

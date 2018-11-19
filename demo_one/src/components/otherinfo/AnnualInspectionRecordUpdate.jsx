@@ -2,10 +2,8 @@ import React from 'react'
 import { Row, Col,Card, Button,Select, Divider, Message,  Radio,TextArea, Form, Input, Cascader,DatePicker} from 'antd';
 import {provinces, cities, areas} from '../../constants/Area'
 import {fetch} from '../../api/tools'
-import locale from 'antd/lib/date-picker/locale/zh_CN';
 import moment from 'moment';
 
-moment.locale('zh-cn');
 //保单记录添加
 
 const Option = Select.Option;
@@ -133,7 +131,7 @@ class AnnualInspectionRecordUpdate extends React.Component {
 
 
     return (
-        <div>
+        <div style={{background: 'white', padding: '26px 16px 16px',margin:'20px 0px'}}>
           <Row><p style={{fontSize: '13px',fontWeight: '800'}}>年检记录</p></Row>
           <Divider style={{margin: '10px 0'}}></Divider>
             <Form onSubmit={this.handleSubmit} layout={formLayout}>

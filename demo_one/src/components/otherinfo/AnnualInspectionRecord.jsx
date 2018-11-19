@@ -1,7 +1,19 @@
 import React from 'react'
-import { Row, Col,Card, Button,  Divider,notification, Message,  Radio,Select,Form,Input, Cascader,DatePicker} from 'antd';
-import {provinces, cities, areas} from '../../constants/Area'
-import UpLoadImg  from '../system/UploadImg'
+import {
+    Button,
+    Card,
+    Cascader,
+    Col,
+    DatePicker,
+    Divider,
+    Form,
+    Input,
+    Message,
+    notification,
+    Radio,
+    Row,
+    Select
+} from 'antd';
 import {fetch} from '../../api/tools'
 //年检记录添加
 
@@ -42,7 +54,7 @@ class AnnualInspectionRecord extends React.Component {
           if (res.code ===2000) {
               Message.success('添加成功');
             // window.location.href("/app/car/carList")
-              this.props.history.push('/app/car/carList');
+              this.props.history.push('/app/car/AnnualInspectionRecordList');
           }
         })
       }
@@ -84,6 +96,11 @@ class AnnualInspectionRecord extends React.Component {
               this.setState({carNumbers:res.data})
           }
       })*/
+      const{ carNumber,carType} = this.props.match.params;
+      this.props.form.setFieldsValue({
+          carNumber:carNumber,
+          carType:carType
+      })
 
   }
 //select选中的值
@@ -133,7 +150,7 @@ class AnnualInspectionRecord extends React.Component {
 
 
     return (
-        <div className='ant-layout' key='123'>
+        <div style={{background: 'white', padding: '26px 16px 16px',margin:'20px 0px'}}>
           <Row><p style={{fontSize: '13px',fontWeight: '800'}}>年检记录</p></Row>
           <Divider style={{margin: '10px 0'}}></Divider>
           <Form onSubmit={this.handleSubmit} layout={formLayout}>

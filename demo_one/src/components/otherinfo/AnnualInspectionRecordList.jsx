@@ -88,7 +88,7 @@ class AnnualInspectionRecordList extends React.Component {
     activeIndex: 0,
     isShowDetail:false,
     pageNum:1,
-    pageSize:6,
+    pageSize:10,
     isShowList:true
   };
 
@@ -214,20 +214,20 @@ class AnnualInspectionRecordList extends React.Component {
               </div>
 
       },];
-    const { getFieldDecorator} = this.props.form;
     const{ data,total,carDetailRecord,pageNum,pageSize} = this.state;
+    const{carNumber,carType} = this.props;
     return (
 
         <div style={{background: 'white', padding: '26px 16px 16px'}}>
             {this.state.isShowList&&<div>
                 <Row><p style={{fontSize: '13px',fontWeight: '800'}}>年检记录</p></Row>
                 <Divider style={{margin: '10px 0'}}></Divider>
-                <Button type="primary" ghost onClick={()=>{history.push('/app/car/AnnualInspectionRecord')}}>添加年检记录</Button>
+                <Button type="primary" ghost onClick={()=>{history.push('/app/car/AnnualInspectionRecord/'+carNumber+'/'+carType)}}>添加年检记录</Button>
                 <Table bordered className='mt15'  columns={columns} dataSource={data} pagination={false} />
                 <Pagination showQuickJumper defaultCurrent={pageNum} defaultPageSize={pageSize} total={total} onChange={this.onChange} />
             </div>}
             {this.state.isShowDetail&&<div>
-                <AnnualInspectionRecordUpdate carDetailRecord={this.state.carDetailRecord} goBack={this.goBack} updateOnChange={this.updateOnChange}/>
+                <AnnualInspectionRecordUpdate carDetailRecord={carDetailRecord} goBack={this.goBack} updateOnChange={this.updateOnChange}/>
             </div>}
         </div>
 

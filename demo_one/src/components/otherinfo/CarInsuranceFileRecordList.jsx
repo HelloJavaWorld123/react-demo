@@ -70,7 +70,7 @@ class CarInsuranceFileRecordList extends React.Component {
     isShowDetail:false,
     isShowList:true,
     pageNum:1,
-    pageSize:5,
+    pageSize:10,
   };
 
 
@@ -176,13 +176,14 @@ class CarInsuranceFileRecordList extends React.Component {
 
       },];
     const{ data,total,pageNum,pageSize} = this.state;
+      const{carNumber,carType} = this.props;
     return (
 
         <div style={{background: 'white', padding: '26px 16px 16px'}}>
             {this.state.isShowList&&<div>
               <Row><p style={{fontSize: '13px',fontWeight: '800'}}>保单记录</p></Row>
               <Divider style={{margin: '10px 0'}}></Divider>
-              <Button type="primary" ghost onClick={()=>{history.push('/app/car/CarInsuranceFileRecord');}}>添加保单记录</Button>
+              <Button type="primary" ghost onClick={()=>{history.push('/app/car/CarInsuranceFileRecord/'+carNumber+'/'+carType);}}>添加保单记录</Button>
               <Table bordered className='mt15'  columns={columns} dataSource={data} pagination={false} />
               <Pagination showQuickJumper defaultCurrent={pageNum} defaultPageSize={pageSize} total={total} onChange={this.onChange} />
           </div>}

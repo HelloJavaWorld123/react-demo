@@ -17,6 +17,7 @@ class CarRentalRecord extends React.Component {
     };
 
     componentDidMount(){
+        console.log(234567)
         console.log("从父级页面传入的车牌号是：",this.props.recordParam);
         this.setState({carNumber:this.props.recordParam});
         this.fetchRecordList(0, 10, this.props.recordParam);
@@ -94,7 +95,7 @@ class CarRentalRecord extends React.Component {
         ];
 
         return (
-            <div>
+            <div style={{background:'#fff'}}>
                 <Button type="primary" size="small"
                 onClick={() => this.props.history.push(`/app/system/rental/add/${carNumber}`)}
                 >新增合同记录</Button>

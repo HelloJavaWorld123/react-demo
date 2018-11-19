@@ -10,59 +10,11 @@ import { createHashHistory } from 'history';
 
 
 const history = createHashHistory();
-const FormItem = Form.Item;
-const Option = Select.Option;
 const confirm = Modal.confirm;
 
 
 
 
-/*const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park2',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park1',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park3',
-},
-    {
-        key: '4',
-        name: 'Joe Black4',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park3',
-    },
-    {
-        key: '5',
-        name: 'Joe Black5',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park3',
-    },
-    {
-        key: '6',
-        name: 'Joe Black6',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park3',
-    },
-    {
-        key: '7',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park3',
-    },
-    {
-        key: '8',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park3',
-    }];*/
 
 
 class CarRepairRecordList extends React.Component {
@@ -71,7 +23,7 @@ class CarRepairRecordList extends React.Component {
     isShowDetail:false,
     isShowList:true,
     pageNum:1,
-    pageSize:5,
+    pageSize:10,
   };
 
 
@@ -193,13 +145,14 @@ class CarRepairRecordList extends React.Component {
 
       },];
     const{ data,total,pageNum,pageSize} = this.state;
+    const{carNumber,carType} = this.props;
     return (
 
         <div style={{background: 'white', padding: '26px 16px 16px'}}>
             {this.state.isShowList&&<div>
               <Row><p style={{fontSize: '13px',fontWeight: '800'}}>保养记录</p></Row>
               <Divider style={{margin: '10px 0'}}></Divider>
-              <Button type="primary" ghost onClick={()=>{history.push('/app/car/CarRepairRecord');}}>添加保养记录</Button>
+              <Button type="primary" ghost onClick={()=>{history.push('/app/car/CarRepairRecord/'+carNumber+'/'+carType);}}>添加保养记录</Button>
               <Table bordered className='mt15'  columns={columns} dataSource={data} pagination={false} />
               <Pagination showQuickJumper defaultCurrent={pageNum} defaultPageSize={pageSize} total={total} onChange={this.onChange} />
           </div>}

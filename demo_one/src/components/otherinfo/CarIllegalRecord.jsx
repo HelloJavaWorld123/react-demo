@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col,Card, Button,  Divider, Message,  Radio,Select,Form, Input, Cascader,DatePicker} from 'antd';
+import { Row, Col,Card, Button,  Divider, Message,Radio,Select,Form, Input, Cascader,DatePicker} from 'antd';
 import {provinces, cities, areas} from '../../constants/Area'
 import UpLoadImg  from '../system/UploadImg'
 import {fetch} from '../../api/tools'
@@ -67,6 +67,12 @@ class CarIllegalRecord extends React.Component {
   };
 
   componentDidMount(){
+      const{ carNumber,carType} = this.props.match.params;
+      this.props.form.setFieldsValue({
+          carNumber:carNumber,
+          carType:carType
+      })
+
     areas.forEach(area => {
       const matchCity = cities.filter(city => city.code === area.cityCode)[0];
       if (matchCity) {
@@ -134,7 +140,7 @@ class CarIllegalRecord extends React.Component {
     const { TextArea } = Input;
 
     return (
-        <div>
+        <div style={{background: 'white', padding: '26px 16px 16px',margin:'20px 0px'}}>
           <Row><p style={{fontSize: '13px',fontWeight: '800'}}>违章记录</p></Row>
           <Divider style={{margin: '10px 0'}}></Divider>
           <Form onSubmit={this.handleSubmit} layout={formLayout}>

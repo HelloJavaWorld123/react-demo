@@ -1,0 +1,49 @@
+.contractListInfo .headerButtonBox > div {
+  margin-top: 24px;
+  background: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-Items: center;
+  height: 98px;
+}
+.contractListInfo .headerButtonBox > div > div {
+  width: 12.5%;
+}
+.contractListInfo .headerButtonBox > div .activeStyles .buttonList p {
+  color: #229AFF;
+}
+.contractListInfo .headerButtonBox > div .activeStyles .buttonList p:last-child {
+  color: #229AFF;
+}
+.contractListInfo .headerButtonBox > div .buttonList {
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1PX solid #e7e7ee;
+}
+.contractListInfo .headerButtonBox > div .buttonList p {
+  font-size: 16px;
+  margin: 0px;
+  height: 20px;
+  line-height: 20px;
+  color: #6a6a6a;
+}
+.contractListInfo .headerButtonBox > div .buttonList p:last-child {
+  padding-top: 6px;
+  font-size: 24px;
+  color: #1a1a1a;
+}
+.contractListInfo .headerButtonBox .bottonItem:last-child .buttonList {
+  border-right: 0PX none;
+}
+.contractListInfo .SearchItem {
+  margin: 24px 0  ;
+  background: #fff;
+  height: 78px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+/*# sourceMappingURL=contractListInfo.css.map */

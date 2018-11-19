@@ -55,6 +55,10 @@ class CarMaintainRecord extends React.Component {
             if (res.code == 2000) {
                 console.log("请求成功返回的结果是：", res);
                 console.log("从后台获取的到车牌号是L", res.data[0].carNumber);
+                res.data = res.data.map((item,index)=>{
+                    item.key=index
+                    return item
+                })
                 this.setState({carMaintainRecordList: res.data,rechargeTotal:res.total,rechargeCurrent:res.pageNum,carNumber:res.data[0].carNumber});
             } else {
                 Message.destroy();
@@ -98,9 +102,9 @@ class CarMaintainRecord extends React.Component {
             },
         ];
 
-
+        
         return (
-            <div>
+            <div style={{background:'#fff'}}>
                 <Card title="维修记录表">
                     <Button size="small" type="primary"
                             onClick={() => this.props.history.push(`/app/system/maintain/add/${carNumber}/null/0`)}>
@@ -109,6 +113,7 @@ class CarMaintainRecord extends React.Component {
                     <Table
                         dataSource={carMaintainRecordList}
                         columns={CAR_MAINTAIN_LIST}
+                        rowKey='key'
                         pagination={{total: rechargeTotal, current: rechargeCurrent}}
                         onChange={(page) =>{
                             this.fetchList(page.current,page.pageSize,this.state.carNumber)

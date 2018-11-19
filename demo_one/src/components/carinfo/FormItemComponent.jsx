@@ -25,16 +25,13 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 class FormItemComponent extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            activityIndex: 0,
-            formLayout: 'horizontal',
-            actionIndex: 2,
-            carNumber: null,
-            carInfoDetail: {},
-        };
-    }
+    state = {
+        activityIndex: 0,
+        formLayout: 'horizontal',
+        actionIndex: 2,
+        carNumber: null,
+        carInfoDetail: {},
+    };
 
     checkCarNumber = (rule, value, callback) => {
         if (value && !(/([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼]{1}(([A-HJ-Z]{1}[A-HJ-NP-Z0-9]{5})|([A-HJ-Z]{1}(([DF]{1}[A-HJ-NP-Z0-9]{1}[0-9]{4})|([0-9]{5}[DF]{1})))|([A-HJ-Z]{1}[A-D0-9]{1}[0-9]{3}警)))|([0-9]{6}使)|((([沪粤川云桂鄂陕蒙藏黑辽渝]{1}A)|鲁B|闽D|蒙E|蒙H)[0-9]{4}领)|(WJ[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼·•]{1}[0-9]{4}[TDSHBXJ0-9]{1})|([VKHBSLJNGCE]{1}[A-DJ-PR-TVY]{1}[0-9]{5})/.test(value))) {
@@ -111,18 +108,18 @@ class FormItemComponent extends React.Component {
         this.props.form.validateFieldsAndScroll((err, fieldsValue) => {
             if (!err) {
 
-                if(this.props.match.params.id == null){
-                    this.addNewRecord(fieldsValue,history);
-                }else{
-                    this.updateRecord(fieldsValue,history);
+                if (this.props.match.params.id == null) {
+                    this.addNewRecord(fieldsValue, history);
+                } else {
+                    this.updateRecord(fieldsValue, history);
                 }
             }
         });
     };
 
-    updateRecord = (fieldsValue,history) =>{
+    updateRecord = (fieldsValue, history) => {
         let params = {
-            "id":this.props.match.params.id,
+            "id": this.props.match.params.id,
             "carNumber": fieldsValue.carNumber,
             "carEngineNum": fieldsValue.carEngineNumber,
             "carFrameNum": fieldsValue.carFrameNumber,
@@ -137,9 +134,7 @@ class FormItemComponent extends React.Component {
             "carPicture": this.state.carPicture,
             "bodyColor": fieldsValue.bodyColor
         };
-        console.log("更新记录提交的表单参数是：{}", params);
         fetch('post', '/api/car/info/update', params).then(res => {
-            console.log("添加车辆请求的结果是{}", res.code);
             if (res.code == 2000) {
                 history.push("/app/system/carListInfo");
             } else {
@@ -149,7 +144,7 @@ class FormItemComponent extends React.Component {
         });
     };
 
-    addNewRecord = (fieldsValue,history) =>{
+    addNewRecord = (fieldsValue, history) => {
         let params = {
             "carNumber": fieldsValue.carNumber,
             "carEngineNum": fieldsValue.carEngineNumber,
@@ -165,21 +160,18 @@ class FormItemComponent extends React.Component {
             "carPicture": this.state.carPicture,
             "bodyColor": fieldsValue.bodyColor
         };
-        console.log("新增记录提交的表单参数是：{}", params);
         fetch('post', '/api/car/info/add', params).then(res => {
-            console.log("添加车辆请求的结果是{}", res.code);
             if (res.code == 2000) {
-                //需要跳转到列表的页面
                 history.push("/app/system/carListInfo");
             } else {
                 Message.destroy();
-                Message.error(res.msg || res.message);
+                Message.error(res.msg);
             }
         });
     };
 
 
-    goToDetailPage = (carNumber, index) => {
+    goToDetailPage = (index) => {
         this.setState({
             activityIndex: index,
         });
@@ -206,13 +198,12 @@ class FormItemComponent extends React.Component {
         return (
             <div>
                 <br/>
-                {/*增加表头选项*/}
                 <div style={{marginLeft: '50'}}>
                     {
                         actionIndex != 2 &&
                         OPTION_LIST.map((item, index) =>
                             <Button type="primary" size="large"
-                                    onClick={() => this.goToDetailPage(carNumber, index + 1)}>{item.title}</Button>
+                                    onClick={() => this.goToDetailPage(index + 1)}>{item.title}</Button>
                         )
                     }
                 </div>
@@ -446,12 +437,12 @@ class FormItemComponent extends React.Component {
                                     <FormItem {...buttonItemLayout}>
                                         <Button type="primary" htmlType="submit" style={{width: '60'}}>确定</Button>
                                         <Button type="primary" htmlType="button" style={{width: '60'}}
-                                        onClick={()=>this.props.history.push(`/app/system/carListInfo`)}>返回</Button>
+                                                onClick={() => this.props.history.push(`/app/system/carListInfo`)}>返回</Button>
                                     </FormItem>
                                     ||
                                     <FormItem {...buttonItemLayout}>
                                         <Button type="primary" htmlType="button" style={{width: '60%'}}
-                                        onClick={()=>this.props.history.push(`/app/system/carListInfo`)}>返回</Button>
+                                                onClick={() => this.props.history.push(`/app/system/carListInfo`)}>返回</Button>
                                     </FormItem>
                                 }
                             </div>
@@ -469,23 +460,28 @@ class FormItemComponent extends React.Component {
 
                 {
                     activityIndex == 5 &&
-                    <CarIllegalRecordList/>
+                    <CarIllegalRecordList carNumber={this.state.carInfoDetail.carNumber}
+                                          carType={this.state.carInfoDetail.carModelType}/>
                 }
                 {
                     activityIndex == 6 &&
-                    <CarRepairedRecordList/>
+                    <CarRepairedRecordList carNumber={this.state.carInfoDetail.carNumber}
+                                           carType={this.state.carInfoDetail.carModelType}/>
                 }
                 {
                     activityIndex == 7 &&
-                    <CarInsuranceRecordList/>
+                    <CarInsuranceRecordList carNumber={this.state.carInfoDetail.carNumber}
+                                            carType={this.state.carInfoDetail.carModelType}/>
                 }
                 {
                     activityIndex == 8 &&
-                    <AnnualInspectionRecordList/>
+                    <AnnualInspectionRecordList carNumber={this.state.carInfoDetail.carNumber}
+                                                carType={this.state.carInfoDetail.carModelType}/>
                 }
                 {
                     activityIndex == 9 &&
-                    <CarInsuranceFileRecordList/>
+                    <CarInsuranceFileRecordList carNumber={this.state.carInfoDetail.carNumber}
+                                                carType={this.state.carInfoDetail.carModelType}/>
                 }
                 <br/>
             </div>

@@ -5,10 +5,11 @@
  *@Des: 车辆管理列表页面
  **/
 import React from 'react'
-import {Button, Card, Table, Message, Input, Divider, Popconfirm, Icon} from 'antd'
+import {Button, Card, Table, Message, Divider, Popconfirm, Icon} from 'antd'
 import {fetch} from "../../api/tools";
+import ButtonList from './ButtonList'
+import SearchItem from './SearchItem'
 
-const Search = Input.Search;
 
 class CarListInfo extends React.Component {
 
@@ -19,7 +20,7 @@ class CarListInfo extends React.Component {
         carListInfo: [], //车辆基本信息
         carTitleName: [],
         dataInfo: [],
-        carNumberList:[],
+        carNumberList: [],
     };
 
     onChange = (item) => {
@@ -38,8 +39,6 @@ class CarListInfo extends React.Component {
         };
         fetch('post', '/api/car/info/delete', param).then(res => {
             if (res.code == 2000) {
-                Message.destroy();
-                Message.success(res.msg);
                 this.fetchDetail(0, null, null, 0)
             } else {
                 Message.destroy();
@@ -71,22 +70,15 @@ class CarListInfo extends React.Component {
         })
     };
 
-    searchByCarNumber = (e) => {
-        console.log("输出框中输入的内容是：", e);
-        let params = {
-            carNumber: e.target.value,
-        };
-        fetch('post', `/api/car/info/carNumber`,params).then(res => {
-            if(res.code == 2000){
-                this.setState({carNumberList: res.data});
-            }
-        });
-    };
-
-
     componentDidMount() {
         this.fetchDetail(0, 10, null, 0);
         this.fetchAllData();
+    };
+
+
+    searchData = (carNumber) => {
+        console.log("传递的参数是：", carNumber);
+        this.fetchDetail(0, 10, carNumber == null ? null : carNumber.carNumber, 0)
     };
 
     fetchAllData() {
@@ -101,7 +93,7 @@ class CarListInfo extends React.Component {
 
 
     render() {
-        let {carListInfo, rechargeTotal, rechargeCurrent, carTitleName, dataInfo,carNumberList} = this.state;
+        let {carListInfo, rechargeTotal, rechargeCurrent, carTitleName, dataInfo} = this.state;
         console.log("统计的数据信息是：", dataInfo);
         let CAR_LIST = [
             {title: '车牌号', dataIndex: 'carNumber', key: 'carNumber'},
@@ -145,44 +137,19 @@ class CarListInfo extends React.Component {
                 item.value = dataInfo[item.index];
             });
         }
+
         return (
             <div>
-                <div style={{background: 'rgb(190, 200, 200)', padding: '26px 16px 16px'}}>
-                    {BUTTON_TOP.map((item) =>
-                        <Button type="primary" ghost className="button-list" onClick={() => this.onChange(item)}>
-                            <p>{item.title}</p><p>{item.value}</p>
-                        </Button>
-                    )}
-                </div>
+                <ButtonList data={BUTTON_TOP} action={this.onChange}/>
                 <br/>
-                <div style={{background: 'rgb(190, 200, 200)', padding: '26px 16px 16px'}}>
-                    {BUTTON_DOWN.map((item) =>
-                        <Button type="primary" ghost className="button-list" onClick={() => this.onChange(item)}>
-                            <p>{item.title}</p><p>{item.value}</p>
-                        </Button>
-                    )}
-                </div>
-                <br/>
-                <div style={{marginLeft: '200'}}>
-                    <Search
-                        placeholder="车牌号"
-                        enterButton="搜索"
-                        style={{width: 200}}
-                        onSearch={value => this.fetchDetail(0, 10, value, 0)}
-                    />
-                    <span style={{marginLeft: '450'}}>
-                        <Button type="primary"
-                                onClick={() => this.props.history.push(`/app/system/carAdd/null/3`)}>增加车辆</Button>
-                    </span>
-                </div>
-                <br/>
+                <ButtonList data={BUTTON_DOWN} action={this.onChange}/>
+                <SearchItem param={Data} action={this.searchData} buParam={ButtonData} history={this.props.history} searchStyle={searchStyle} formItemStyle={formItemStyle}/>
                 <Card title={(carTitleName.title) == null ? "车辆列表" : (carTitleName.title)}>
                     <Table
                         dataSource={carListInfo}
                         pagination={{total: rechargeTotal, current: rechargeCurrent}}
                         columns={CAR_LIST}
                         onChange={(page) => {
-                            console.log("page是：", page);
                             this.fetchDetail(page.current, page.pageSize, null, 0)
                         }}
                     />
@@ -191,6 +158,27 @@ class CarListInfo extends React.Component {
         );
     }
 }
+
+const ButtonData=[
+    {source:'1',name:"新增车辆"},
+];
+
+
+const formItemStyle={
+    labelCol: {
+        xs:{span: 50},
+        sm:{span: 5},
+    },
+    wrapperCol: {
+        xs:{span: 0},
+        sm:{span: 50},
+    }};
+
+const searchStyle={ marginLeft: '300'};
+
+const Data = [
+    {param: '车牌号', paramName: 'carNumber'},
+];
 
 
 const BUTTON_DOWN = [

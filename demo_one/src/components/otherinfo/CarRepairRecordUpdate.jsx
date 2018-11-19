@@ -2,11 +2,9 @@ import React from 'react'
 import { Row, Col,Card, Button,  Divider, Message,  Radio,TextArea, Form, Input, Cascader,DatePicker} from 'antd';
 import {provinces, cities, areas} from '../../constants/Area'
 import {fetch} from '../../api/tools'
-import locale from 'antd/lib/date-picker/locale/zh_CN';
 import moment from 'moment';
 
-moment.locale('zh-cn');
-//保单记录添加
+//保养记录修改
 
 
 const FormItem = Form.Item;

@@ -14,8 +14,8 @@ import OperationLog from '../components/system/OperationLog';
 import SetAccount from '../components/system/SetAccount';
 import ChangePwd from '../components/system/ChangePwd';
 import ChangePayPwd from '../components/account/ChangePayPwd';
-import CarListInfo from '../components/carinfo/CarListInfo'
-import FormItemComponent from '../components/carinfo/FormItemComponent'
+import CarListInfo from '../components/carinfo/carListInfo/CarListInfo'
+import FormItemComponent from '../components/carinfo/fromItemComponent/FormItemComponent'
 import CarMaintainRecordList from '../components/carinfo/CarMaintainRecord'
 import CarMaintainRecordDetail from '../components/carinfo/CarMaintainRecordDetail'
 import CarRentalRecord from '../components/carinfo/CarRentalRecord'
@@ -30,6 +30,10 @@ import CarRepairRecordList from '../components/otherinfo/CarRepairRecordList';
 import CarRepairRecord from '../components/otherinfo/CarRepairRecord';
 import CarInsuranceRecordList from '../components/otherinfo/CarInsuranceRecordList';
 import CarInsuranceRecord from '../components/otherinfo/CarInsuranceRecord';
+import ContractListInfo from '../components/carinfo/contractListInfo/ContractListInfo'
+import ContractDetail from '../components/carinfo/contractDetail/ContractDetail'
+import ContractRiskList from '../components/contract_manage/ContractRiskList';
+import ContractRiskDetail from '../components/contract_manage/ContractRiskDetail';
 
 
 // const WysiwygBundle = (props) => (
@@ -71,16 +75,20 @@ export default class CRouter extends Component {
                 <Route exact path="/app/system/maintain/add/:id/:maintainId/:index" component={CarMaintainRecordDetail}/>
                 <Route exact path="/app/system/rental/record" component={CarRentalRecord}/>
                 <Route exact path="/app/system/rental/add/:carNumber/:index" component={CarRentalRecordDetail}/>
-                <Route exact path="/app/car/AnnualInspectionRecord" component={AnnualInspectionRecord} />
+                <Route exact path="/app/car/AnnualInspectionRecord/:carNumber/:carType" component={AnnualInspectionRecord} />
                 <Route exact path="/app/car/AnnualInspectionRecordList" component={AnnualInspectionRecordList} />
                 <Route exact path="/app/car/CarIllegalRecordList" component={CarIllegalRecordList} />
-                <Route exact path="/app/car/CarIllegalRecord" component={CarIllegalRecord} />
-                <Route exact path="/app/car/CarInsuranceFileRecord" component={CarInsuranceFileRecord} />
+                <Route exact path="/app/car/CarIllegalRecord/:carNumber/:carType" component={CarIllegalRecord} />
+                <Route exact path="/app/car/CarInsuranceFileRecord/:carNumber/:carType" component={CarInsuranceFileRecord} />
                 <Route exact path="/app/car/CarInsuranceFileRecordList" component={CarInsuranceFileRecordList} />
                 <Route exact path="/app/car/CarRepairRecordList" component={CarRepairRecordList} />
-                <Route exact path="/app/car/CarRepairRecord" component={CarRepairRecord} />
+                <Route exact path="/app/car/CarRepairRecord/:carNumber/:carType" component={CarRepairRecord} />
                 <Route exact path="/app/car/CarInsuranceRecordList" component={CarInsuranceRecordList} />
-                <Route exact path="/app/car/CarInsuranceRecord" component={CarInsuranceRecord} />
+                <Route exact path="/app/car/CarInsuranceRecord/:carNumber/:carType" component={CarInsuranceRecord} />
+                <Route exact path="/app/system/contractListInfo" component={ContractListInfo} />
+                <Route exact path="/app/system/contractDetail/:id/:source" component={ContractDetail} />
+                <Route exact path="/app/contract/ContractRiskList" component={ContractRiskList} />
+                <Route exact path="/app/contract/ContractRiskDetail/:id" component={ContractRiskDetail} />
                 <Route render={() => <Redirect to="/404" />} />
             </Switch>
         )

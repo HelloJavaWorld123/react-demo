@@ -3,11 +3,8 @@ import { Row, Col,Card, Button,  Divider, Message,  Radio,TextArea, Form, Input,
 import {provinces, cities, areas} from '../../constants/Area'
 import UpLoadImg  from '../system/UploadImg'
 import {fetch} from '../../api/tools'
-import locale from 'antd/lib/date-picker/locale/zh_CN';
 import moment from 'moment';
-import 'moment/locale/zh-cn';
 
-moment.locale('zh-cn');
 //保单记录添加
 
 
@@ -140,7 +137,7 @@ class CarInsuranceFileRecordUpdate extends React.Component {
 
 
     return (
-        <div>
+        <div style={{background: 'white', padding: '26px 16px 16px',margin:'20px 0px'}}>
           <Row><p style={{fontSize: '13px',fontWeight: '800'}}>保单记录</p></Row>
           <Divider style={{margin: '10px 0'}}></Divider>
           <Form onSubmit={this.handleSubmit} layout={formLayout}>
@@ -231,7 +228,7 @@ class CarInsuranceFileRecordUpdate extends React.Component {
                                   required:true,message:"请选择商业险结束时间"
                               }],
                           })(
-                              <DatePicker locale={locale} placeholder={'请选择商业险结束时间'}/>
+                              <DatePicker  placeholder={'请选择商业险结束时间'}/>
                           )}
                       </FormItem>
                   </Col>
@@ -247,7 +244,7 @@ class CarInsuranceFileRecordUpdate extends React.Component {
                                   required:true,message:"请选择交强险开始时间"
                               }],
                           })(
-                              <DatePicker locale={locale} placeholder={'请选择交强险开始时间'}/>
+                              <DatePicker  placeholder={'请选择交强险开始时间'}/>
                           )}
                       </FormItem>
                   </Col>
@@ -275,7 +272,7 @@ class CarInsuranceFileRecordUpdate extends React.Component {
                                   required:true,message:"请选择交强险结束时间"
                               }],
                           })(
-                              <DatePicker locale={locale} placeholder={'请选择交强险结束时间'}/>
+                              <DatePicker  placeholder={'请选择交强险结束时间'}/>
                           )}
                       </FormItem>
                   </Col>
